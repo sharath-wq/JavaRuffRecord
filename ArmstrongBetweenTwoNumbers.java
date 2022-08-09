@@ -3,27 +3,29 @@ import java.util.Scanner;
 
 public class ArmstrongBetweenTwoNumbers {
 
-  public static void main(String a[]) {
+  public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    int lowerLimit, upperLimit;
+    int low, high;
 
-    System.out.println("Enter the Lower Limit: ");
-    lowerLimit = sc.nextInt();
-    System.out.println("Enter the Upper Limit: ");
-    upperLimit = sc.nextInt();
+    System.out.println("Enter the lower limit: ");
+    low = sc.nextInt();
+    System.out.println("Enter the upper limit: ");
+    high = sc.nextInt();
 
-    for (int i = lowerLimit; i < upperLimit; i++) {
-      int check, rem, sum = 0;
-      check = i;
-      while (check != 0) {
-        rem = check % 10;
-        sum = sum + (rem * rem * rem);
-        check = check / 10;
+    System.out.println(
+      "Armstrong Numbers within " + low + " and " + high + " is: "
+    );
+    for (int i = low + 1; i < high; ++i) {
+      int num = 0;
+      int dig = (int) Math.log10(i) + 1;
+      for (int temp = i; temp != 0; temp /= 10) {
+        int rem = temp % 10;
+        num += Math.pow(rem, dig);
       }
-
-      if (sum == i) {
-        System.out.println(" " + i + " is an Armstrong number.");
+      if (i == num) {
+        System.out.print(i + " ");
       }
     }
+    System.out.println();
   }
 }
